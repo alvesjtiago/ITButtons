@@ -6,6 +6,7 @@ Ready to use UIButtons drawn with CoreGraphics
 Example screenshot of custom nav bar back button:
 
 ![Screenshot](https://github.com/alvesjtiago/ITButtons/raw/master/screenshot.png)
+![Screenshot](https://github.com/alvesjtiago/ITButtons/raw/master/screenshot-highlighted.png)
 
 ## Installation
 - Copy the `ITButtons` folder to your project folder.
