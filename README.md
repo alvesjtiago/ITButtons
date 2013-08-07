@@ -7,11 +7,18 @@ Example screenshot of custom nav bar back button:
 ![Screenshot](https://github.com/alvesjtiago/ITButtons/raw/master/screenshot.png)
 
 ## Installation
-- Copy over the `ITButtons` folder to your project folder.
+- Copy the `ITButtons` folder to your project folder.
 
 ### Example Code
 
+On top of the file you intend to use ITButtons simply import the button you want. Ex:
+```objective-c
+
+#import "ITBackButton.h"
+```
+
 #### Custom nav bar back button
+
 ```objective-c
 
 ITBackButton *backButton = [[ITBackButton alloc] initWithFrame:CGRectMake(0, 0, 54, 30)];
