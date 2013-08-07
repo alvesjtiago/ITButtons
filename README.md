@@ -1,7 +1,7 @@
 ITButtons
 =========
 
-Ready to use UIButtons drawn with CoreGraphics
+Ready to use UIButtons drawn with CoreGraphics.
 
 Example screenshot of custom nav bar back button:
 
