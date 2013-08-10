@@ -1,31 +1,19 @@
 //
-//  ITBackButton.m
+//  ITMainButton.m
 //
 //  Created by Tiago Alves on 8/5/13.
 //  Copyright (c) 2013 Iterar. All rights reserved.
 //
 
-#import "ITBackButton.h"
-#import "ITShapes.h"
-#import "UIView+JMNoise.h"
+#import "ITMainButton.h"
 
-@implementation ITBackButton
+@implementation ITMainButton
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.6] forState:UIControlStateHighlighted];
-        [self setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.4] forState:UIControlStateNormal];
-        [self setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
-        self.titleLabel.shadowOffset = CGSizeMake(0, -1);
-        self.titleLabel.font = [UIFont boldSystemFontOfSize:12.0];
-        
-        // Defaults
-        self.addNoise = TRUE;
-        
     }
     return self;
 }
@@ -40,24 +28,21 @@
     
     // Color Declarations
     if (!self.borderColor) {
-        self.borderColor = [UIColor colorWithRed:0.15f green:0.15f blue:0.17f alpha:0.7];
+        self.borderColor = [UIColor colorWithRed:0.20f green:0.21f blue:0.23f alpha:1.00f];
     }
     if (!self.topColor) {
-        self.topColor = [UIColor colorWithRed:0.31f green:0.32f blue:0.34f alpha:1.00f];
+        self.topColor = [UIColor colorWithRed:0.32f green:0.33f blue:0.35f alpha:1.00f];
     }
     if (!self.bottomColor) {
-        self.bottomColor = [UIColor colorWithRed:0.17f green:0.18f blue:0.20f alpha:1.00f];
+        self.bottomColor = [UIColor colorWithRed:0.16f green:0.17f blue:0.19f alpha:1.00f];
     }
     if (!self.innerGlow) {
-        self.innerGlow = [UIColor colorWithWhite:0.5 alpha:0.4];
+        self.innerGlow = [UIColor clearColor];
     }
     
     // Dimensions Declarations
     if (!self.radius) {
-        self.radius = 5.0f;
-    }
-    if (!self.arrowWidth) {
-        self.arrowWidth = 10.0f;
+        self.radius = 4.0f;
     }
     if (!self.borderWidth) {
         self.borderWidth = 2;
@@ -78,8 +63,8 @@
     
     CGGradientRef highlightedGradient = CGGradientCreateWithColors(colorSpace, (__bridge CFArrayRef)(highlightedGradientColors), NULL);
     
-    // Draw rounded back arrow bezier path
-    UIBezierPath *roundedRectanglePath = [ITShapes bezierPathForBackButtonInRect:rect withRoundingRadius:self.radius andArrowWidth:self.arrowWidth];
+    // Draw rounded rectangle bezier path
+    UIBezierPath *roundedRectanglePath = [UIBezierPath bezierPathWithRoundedRect: rect cornerRadius: self.radius];
     // Use the bezier as a clipping path
     [roundedRectanglePath addClip];
     
@@ -89,20 +74,16 @@
     // Draw gradient within the path
     CGContextDrawLinearGradient(context, background, CGPointMake(rect.size.width/2, 0), CGPointMake(rect.size.width/2, rect.size.height), 0);
     
-    if (self.addNoise) {
-        [self drawCGNoiseWithOpacity:0.1];
-    }
+    // Draw border
+    [self.borderColor setStroke];
+    roundedRectanglePath.lineWidth = self.borderWidth;
+    [roundedRectanglePath stroke];
     
     // Draw Inner Glow
-    UIBezierPath *innerGlowRect = [ITShapes bezierPathForInnerGlowBackButtonInRect:rect withRoundingRadius:self.radius andArrowWidth:self.arrowWidth];
+    UIBezierPath *innerGlowRect = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(1.5, 1.5, rect.size.width-3, rect.size.height-3) cornerRadius: self.radius - 1.5];
     [self.innerGlow setStroke];
     innerGlowRect.lineWidth = 1;
     [innerGlowRect stroke];
-    
-    // Draw border
-    [self.borderColor setStroke];
-    roundedRectanglePath.lineWidth = self.borderWidth ? self.borderWidth : 2.5;
-    [roundedRectanglePath stroke];
     
     // Cleanup
     CGGradientRelease(gradient);
