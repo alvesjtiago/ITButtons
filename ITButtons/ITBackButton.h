@@ -14,6 +14,10 @@
 @property (nonatomic, strong) UIColor *topColor;
 @property (nonatomic, strong) UIColor *bottomColor;
 @property (nonatomic, strong) UIColor *innerGlow;
+@property (nonatomic, strong) UIColor *titleColor;
+@property (nonatomic, strong) UIColor *titleColorHighlighted;
+@property (nonatomic, strong) UIColor *titleShadowColor;
+@property (nonatomic, strong) UIColor *titleShadowColorHighlighted;
 
 // Dimensions
 @property (nonatomic) CGFloat radius;
