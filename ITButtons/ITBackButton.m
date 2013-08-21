@@ -16,9 +16,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self setTitleColor:[UIColor colorWithWhite:1.0 alpha:0.6] forState:UIControlStateHighlighted];
-        [self setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.4] forState:UIControlStateNormal];
         [self setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         self.titleLabel.shadowOffset = CGSizeMake(0, -1);
         self.titleLabel.font = [UIFont boldSystemFontOfSize:12.0];
@@ -62,6 +59,24 @@
     if (!self.borderWidth) {
         self.borderWidth = 2;
     }
+    
+    if(!self.titleColor) {
+        self.titleColor = [UIColor whiteColor];
+    }
+    if (!self.titleColorHighlighted) {
+        self.titleColorHighlighted = [UIColor colorWithWhite:1.0 alpha:0.6];
+    }
+    if (!self.titleShadowColor) {
+        self.titleShadowColor = [UIColor colorWithWhite:0 alpha:0.4];
+    }
+    if (!self.titleShadowColorHighlighted) {
+        self.titleShadowColorHighlighted = [UIColor colorWithWhite:0 alpha:0.4];
+    }
+
+    [self setTitleColor:self.titleColor forState:UIControlStateNormal];
+    [self setTitleColor:self.titleColorHighlighted forState:UIControlStateHighlighted];
+    [self setTitleShadowColor:self.titleShadowColor forState:UIControlStateNormal];
+    [self setTitleShadowColor:self.titleShadowColorHighlighted forState:UIControlStateHighlighted];
     
     // Gradient Declarations
     NSArray *gradientColors = (@[
